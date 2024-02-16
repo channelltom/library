@@ -1,0 +1,45 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr 6fr 1fr;
+}
+
+.header-container {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: dodgerblue;
+}
+
+.shelf-container {
+  display: flex;
+  background: orange;
+  gap: 15px;
+  padding: 15px;
+}
+
+.book-card {
+  border: 3px solid black;
+  height: 200px;
+  width: 250px;
+}
+
+.submit-btn,
+.add-btn {
+  width: 200px;
+  height: 50px;
+}
+
+.new-book-form {
+  display: none;
+}
+
+.footer {
+  background: red;
+}

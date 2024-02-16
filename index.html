@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-container">
+        <div class="title">Library</div>
+        <button class="add-btn" onClick="showForm()">Add Book</button>
+      </div>
+      <form action="" class="new-book-form" id="form">
+        <input
+          type="text"
+          class="title-field"
+          name="titleField"
+          placeholder="Title"
+        />
+        <input
+          type="text"
+          class="author-field"
+          name="authorField"
+          placeholder="Author"
+        />
+        <input
+          type="text"
+          class="pages"
+          name="pagesField"
+          placeholder="No. of Pages"
+        />
+        <input type="checkbox" class="read-field" />
+        <input
+          type="submit"
+          name="submitBtn"
+          class="submit-btn"
+          id="submit-btn"
+          value="Add Book"
+          onClick="hideForm()"
+        />
+      </form>
+      <div class="shelf-container" id="shelf"></div>
+      <div class="footer"></div>
+    </div>
+  </body>
+</html>
