@@ -32,15 +32,22 @@ function removeBookFromLibrary(id) {
 var shelfElement = document.querySelector("#shelf");
 shelfElement.addEventListener("click", function (event) {
   if (event.target.classList.contains("delete")) {
-    console.log("test");
-    var children = event.target.parentNode.children;
-    for (let item of children) {
-      console.log(item);
+    var bookCard = event.target.parentElement.parentElement;
+    for (let item of bookCard.children) {
       if (item.classList == "id") {
         var id = parseInt(item.innerText);
       }
     }
+    bookCard.remove();
     removeBookFromLibrary(id);
+  }
+  if (event.target.classList.contains("toggle")) {
+    console.log("toggle button");
+    if (event.target.innerText === "Read") {
+      event.target.innerText = "Unread";
+    } else {
+      event.target.innerText = "Read";
+    }
   }
 });
 
@@ -55,27 +62,44 @@ function clearBookCards() {
 function createCard(book) {
   var card = document.createElement("div");
   card.classList.add("book-card");
+  console.log(book);
   for (let [key, value] of Object.entries(book)) {
     var newElement = document.createElement("div");
     newElement.classList.add(key);
-    newElement.innerText = book[key];
+    newElement.innerText = value;
+    if (key === "title") {
+      newElement.style.fontWeight = "800";
+    } else if (key === "author") {
+      newElement.innerText = `by ${value}`;
+    } else if (key === "pages") {
+      newElement.innerText = `${value} pages`;
+    }
+    if (key === "id" || key === "read") {
+      newElement.style.display = "none";
+    }
     card.appendChild(newElement);
   }
-  var bookBtn = document.createElement("button");
-  bookBtn.classList.add("delete");
-  bookBtn.innerText = "Delete";
-  card.appendChild(bookBtn);
-  console.log(book.id);
+  var btnContainer = document.createElement("div");
+  var delBtn = document.createElement("button");
+  var readToggle = document.createElement("button");
+  btnContainer.classList.add("btn-container");
+  delBtn.classList.add("delete");
+  delBtn.innerText = "Delete";
+  readToggle.classList.add("toggle");
+  readToggle.innerText = book.read;
+  btnContainer.appendChild(delBtn);
+  btnContainer.appendChild(readToggle);
+  card.appendChild(btnContainer);
   document.getElementById("shelf").appendChild(card);
 }
 
-function showForm() {
-  document.getElementById("form").style.display = "block";
-}
+const modal = document.querySelector(".form-modal");
+const addbtn = document.querySelector(".add-btn");
 
-function hideForm() {
-  document.getElementById("form").style.display = "none";
-}
+addbtn.addEventListener("click", () => {
+  modal.showModal();
+  showForm();
+});
 
 document.getElementById("form").addEventListener(
   "submit",
@@ -88,20 +112,20 @@ document.getElementById("form").addEventListener(
     const title = formFields.titleField;
     const author = formFields.authorField;
     const pages = formFields.pagesField;
-    const isRead = formFields[3];
+    var isRead = formFields[3].checked;
+    console.log(isRead);
+    if (isRead) {
+      var readValue = "Read";
+    } else {
+      var readValue = "Unread";
+    }
 
-    var newBook = new Book(
-      title.value,
-      author.value,
-      pages.value,
-      isRead.value,
-    );
+    var newBook = new Book(title.value, author.value, pages.value, readValue);
 
     addBookToLibrary(newBook);
     createCard(newBook);
-    // createBookCards(myLibrary);
 
-    hideForm();
+    modal.close();
   },
   false,
 );

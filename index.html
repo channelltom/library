@@ -3,44 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+    </style>
     <script src="./script.js" defer></script>
   </head>
   <body>
     <div class="container">
       <div class="header-container">
-        <div class="title">Library</div>
-        <button class="add-btn" onClick="showForm()">Add Book</button>
+        <div class="header-title">Library</div>
+        <button class="add-btn">Add Book</button>
       </div>
-      <form action="" class="new-book-form" id="form">
-        <input
-          type="text"
-          class="title-field"
-          name="titleField"
-          placeholder="Title"
-        />
-        <input
-          type="text"
-          class="author-field"
-          name="authorField"
-          placeholder="Author"
-        />
-        <input
-          type="text"
-          class="pages"
-          name="pagesField"
-          placeholder="No. of Pages"
-        />
-        <input type="checkbox" class="read-field" />
-        <input
-          type="submit"
-          name="submitBtn"
-          class="submit-btn"
-          id="submit-btn"
-          value="Add Book"
-          onClick="hideForm()"
-        />
-      </form>
+      <dialog class="form-modal">
+        <form action="" class="new-book-form" id="form">
+          <input
+            type="text"
+            class="title-field"
+            name="titleField"
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            class="author-field"
+            name="authorField"
+            placeholder="Author"
+            required
+          />
+          <input
+            type="text"
+            class="pages"
+            name="pagesField"
+            placeholder="No. of Pages"
+          />
+          <div class="read-container">
+            <label for="checkbox">Read:</label>
+            <input type="checkbox" class="read-field" />
+          </div>
+          <input
+            type="submit"
+            name="submitBtn"
+            class="submit-btn"
+            id="submit-btn"
+            value="Add Book"
+            onClick="hideForm()"
+          />
+        </form>
+      </dialog>
       <div class="shelf-container" id="shelf"></div>
       <div class="footer"></div>
     </div>
