@@ -1,5 +1,6 @@
 :root {
-  --accent-color: hsl(0, 0%, 81%);
+  --accent-color: hsl(0, 0%, 80%);
+  --main-bg-color: hsl(0, 0%, 60%);
   --button-color: hsl(160, 50%, 50%);
   --focus-button-color: hsl(160, 50%, 25%);
   --delete-button-color: hsl();
@@ -36,7 +37,7 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
-  background: hsl(0, 0%, 91%);
+  background: var(--main-bg-color);
 }
 
 .book-card {
@@ -85,7 +86,7 @@ input[type="text"] {
   border: none;
   height: 2rem;
   width: 100%;
-  border-bottom: 2px solid grey;
+  border-radius: 3px;
 }
 
 .submit-btn,
@@ -100,13 +101,37 @@ input[type="text"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: dodgerblue;
+  background-color: var(--accent-color);
   border-radius: 10px;
+  border: none;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
+}
+
+dialog::backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: none;
+}
+
+.book-card {
+  font-weight: 200;
+  text-align: center;
+}
+
+.title {
+  font-size: min(5vw, 1.5em);
+}
+
+.read {
+  background: orange;
 }
 
 .new-book-form {

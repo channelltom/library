@@ -45,8 +45,10 @@ shelfElement.addEventListener("click", function (event) {
     console.log("toggle button");
     if (event.target.innerText === "Read") {
       event.target.innerText = "Unread";
+      event.target.classList.remove("read");
     } else {
       event.target.innerText = "Read";
+      event.target.classList.add("read");
     }
   }
 });
@@ -68,7 +70,7 @@ function createCard(book) {
     newElement.classList.add(key);
     newElement.innerText = value;
     if (key === "title") {
-      newElement.style.fontWeight = "800";
+      newElement.style.fontWeight = "400";
     } else if (key === "author") {
       newElement.innerText = `by ${value}`;
     } else if (key === "pages") {
